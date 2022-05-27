@@ -1,0 +1,72 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jpkhawam.finalprojectapi.apis.activities.ActivityMapper">
+    <resultMap id="Activity" type="activity">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="category_id" property="category_id"/>
+        <result column="activity_type_id" property="activity_type_id"/>
+        <result column="city_id" property="city_id"/>
+        <result column="setting_id" property="setting_id"/>
+        <result column="coordinates" property="coordinates"/>
+        <result column="gmaps_link" property="gmaps_link"/>
+        <result column="min_age" property="min_age"/>
+        <result column="max_age" property="max_age"/>
+        <result column="energy_level" property="energy_level"/>
+        <result column="budget" property="budget"/>
+        <result column="pets_allowed" property="pets_allowed"/>
+        <result column="contact_number" property="contact_number"/>
+    </resultMap>
+
+    <sql id="selectAllColumns">
+        id,
+        name,
+        category_id,
+        activity_type_id,
+        city_id,
+        setting_id,
+        coordinates,
+        gmaps_link,
+        min_age,
+        max_age,
+        energy_level,
+        budget,
+        pets_allowed,
+        contact_number
+    </sql>
+
+    <select id="selectAll" resultMap="Activity">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        activities
+        <if test="orderColumn != null">
+            ORDER BY ${orderColumn.getColumn()}
+            <if test="orderDirection != null">
+                ${orderDirection.getDirection()}
+            </if>
+        </if>
+        <if test="limit != null">
+            LIMIT ${limit}
+        </if>
+        <if test="offset != null">
+            OFFSET ${offset}
+        </if>
+    </select>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM
+            activities
+    </select>
+
+    <select id="selectById" resultMap="Activity">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        activities
+        WHERE
+        id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </select>
+</mapper>
