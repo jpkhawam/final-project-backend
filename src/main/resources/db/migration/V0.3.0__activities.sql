@@ -1,7 +1,7 @@
 CREATE TABLE activities
 (
     id               UUID PRIMARY KEY DEFAULT (uuid_generate_v4()),
-    activity_name    TEXT    NOT NULL,
+    name             TEXT    NOT NULL,
     category_id      INTEGER NOT NULL,
     activity_type_id INTEGER NOT NULL,
     city_id          UUID    NOT NULL,
