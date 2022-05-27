@@ -1,0 +1,50 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jpkhawam.finalprojectapi.apis.cities.CityMapper">
+    <resultMap id="City" type="city">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="country" property="country"/>
+    </resultMap>
+
+    <sql id="selectAllColumns">
+        id,
+        name,
+        country
+    </sql>
+
+    <select id="selectAll" resultMap="City">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        cities
+        <if test="orderColumn != null">
+            ORDER BY ${orderColumn.getColumn()}
+            <if test="orderDirection != null">
+                ${orderDirection.getDirection()}
+            </if>
+        </if>
+        <if test="limit != null">
+            LIMIT ${limit}
+        </if>
+        <if test="offset != null">
+            OFFSET ${offset}
+        </if>
+    </select>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM
+            cities
+    </select>
+
+    <select id="selectById" resultMap="City">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        cities
+        WHERE
+        id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </select>
+</mapper>
