@@ -1,0 +1,47 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jpkhawam.finalprojectapi.apis.activity_types.ActivityTypeMapper">
+    <resultMap id="ActivityType" type="activitytype">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <sql id="selectAllColumns">
+        id,
+        name
+    </sql>
+
+    <select id="selectAll" resultMap="ActivityType">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        activity_types
+        <if test="orderColumn != null">
+            ORDER BY ${orderColumn.getColumn()}
+            <if test="orderDirection != null">
+                ${orderDirection.getDirection()}
+            </if>
+        </if>
+        <if test="limit != null">
+            LIMIT ${limit}
+        </if>
+        <if test="offset != null">
+            OFFSET ${offset}
+        </if>
+    </select>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM activity_types
+    </select>
+
+    <select id="selectById" resultMap="ActivityType">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        activity_types
+        WHERE
+        id = #{id}
+    </select>
+</mapper>
