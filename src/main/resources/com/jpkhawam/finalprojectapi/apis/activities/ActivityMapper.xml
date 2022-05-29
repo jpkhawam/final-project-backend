@@ -22,12 +22,14 @@
     <sql id="selectAllColumns">
         id,
         name,
+        description,
         category_id,
         activity_type_id,
         city_id,
         setting_id,
         coordinates,
         gmaps_link,
+        image_url,
         min_age,
         max_age,
         energy_level,
@@ -57,8 +59,7 @@
 
     <select id="selectCount" resultType="Integer">
         SELECT COUNT(*)
-        FROM
-            activities
+        FROM activities
     </select>
 
     <select id="selectById" resultMap="Activity">

@@ -5,12 +5,14 @@ import com.jpkhawam.finalprojectapi.apis.BaseDomain;
 import java.util.UUID;
 
 public class Activity extends BaseDomain {
+    public String description;
     public int category_id;
     public int activity_type_id;
     public UUID city_id;
     public int setting_id;
     public String coordinates;
     public String gmaps_link;
+    public String image_url;
     public int min_age;
     public int max_age;
     public int energy_level;
@@ -112,5 +114,21 @@ public class Activity extends BaseDomain {
 
     public void setContact_number(String contact_number) {
         this.contact_number = contact_number;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImage_url() {
+        return image_url;
+    }
+
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 }
