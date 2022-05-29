@@ -1,5 +1,5 @@
 CREATE TABLE settings
 (
-    id      SERIAL PRIMARY KEY,
-    setting TEXT NOT NULL UNIQUE
+    id   SERIAL PRIMARY KEY,
+    name TEXT NOT NULL UNIQUE
 );
