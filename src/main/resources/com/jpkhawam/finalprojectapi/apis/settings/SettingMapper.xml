@@ -1,0 +1,47 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jpkhawam.finalprojectapi.apis.settings.SettingMapper">
+    <resultMap id="Setting" type="setting">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <sql id="selectAllColumns">
+        id,
+        name
+    </sql>
+
+    <select id="selectAll" resultMap="Setting">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        settings
+        <if test="orderColumn != null">
+            ORDER BY ${orderColumn.getColumn()}
+            <if test="orderDirection != null">
+                ${orderDirection.getDirection()}
+            </if>
+        </if>
+        <if test="limit != null">
+            LIMIT ${limit}
+        </if>
+        <if test="offset != null">
+            OFFSET ${offset}
+        </if>
+    </select>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM settings
+    </select>
+
+    <select id="selectById" resultMap="Setting">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        settings
+        WHERE
+        id = #{id}
+    </select>
+</mapper>
