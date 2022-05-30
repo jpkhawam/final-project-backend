@@ -1,0 +1,47 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jpkhawam.finalprojectapi.apis.special_needs.SpecialNeedMapper">
+    <resultMap id="SpecialNeed" type="specialneed">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+    </resultMap>
+
+    <sql id="selectAllColumns">
+        id,
+        name
+    </sql>
+
+    <select id="selectAll" resultMap="SpecialNeed">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        special_needs
+        <if test="orderColumn != null">
+            ORDER BY ${orderColumn.getColumn()}
+            <if test="orderDirection != null">
+                ${orderDirection.getDirection()}
+            </if>
+        </if>
+        <if test="limit != null">
+            LIMIT ${limit}
+        </if>
+        <if test="offset != null">
+            OFFSET ${offset}
+        </if>
+    </select>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM special_needs
+    </select>
+
+    <select id="selectById" resultMap="SpecialNeed">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        special_needs
+        WHERE
+        id = #{id}
+    </select>
+</mapper>
