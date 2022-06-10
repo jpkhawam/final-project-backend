@@ -16,6 +16,8 @@ CREATE TABLE activities
     budget           INTEGER,
     pets_allowed     BOOLEAN,
     contact_number   TEXT,
+    email            TEXT,
+    website          TEXT,
     CONSTRAINT fk_activities_category_id FOREIGN KEY (category_id) REFERENCES categories (id),
     CONSTRAINT fk_activities_activity_type_id FOREIGN KEY (activity_type_id) REFERENCES activity_types (id),
     CONSTRAINT fk_activities_city_id FOREIGN KEY (city_id) REFERENCES cities (id),

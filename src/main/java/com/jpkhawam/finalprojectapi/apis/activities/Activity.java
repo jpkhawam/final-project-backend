@@ -19,6 +19,8 @@ public class Activity extends BaseDomain {
     public int budget;
     public boolean pets_allowed;
     public String contact_number;
+    public String email;
+    public String website;
 
     public int getCategory_id() {
         return category_id;
@@ -130,5 +132,21 @@ public class Activity extends BaseDomain {
 
     public void setImage_url(String image_url) {
         this.image_url = image_url;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 }

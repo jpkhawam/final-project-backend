@@ -17,6 +17,8 @@
         <result column="budget" property="budget"/>
         <result column="pets_allowed" property="pets_allowed"/>
         <result column="contact_number" property="contact_number"/>
+        <result column="email" property="email"/>
+        <result column="website" property="website"/>
     </resultMap>
 
     <sql id="selectAllColumns">
@@ -35,7 +37,9 @@
         energy_level,
         budget,
         pets_allowed,
-        contact_number
+        contact_number,
+        email,
+        website
     </sql>
 
     <select id="selectAll" resultMap="Activity">
