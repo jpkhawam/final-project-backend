@@ -1,0 +1,49 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jpkhawam.finalprojectapi.apis.activities_special_needs.ActivitySpecialNeedMapper">
+    <resultMap id="ActivitySpecialNeed" type="activityspecialneed">
+        <id column="id" property="id"/>
+        <result column="activity_id" property="activity_id"/>
+        <result column="special_need_id" property="special_need_id"/>
+    </resultMap>
+
+    <sql id="selectAllColumns">
+        id,
+        activity_id,
+        special_need_id
+    </sql>
+
+    <select id="selectAll" resultMap="ActivitySpecialNeed">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        activities_special_needs
+        <if test="orderColumn != null">
+            ORDER BY ${orderColumn.getColumn()}
+            <if test="orderDirection != null">
+                ${orderDirection.getDirection()}
+            </if>
+        </if>
+        <if test="limit != null">
+            LIMIT ${limit}
+        </if>
+        <if test="offset != null">
+            OFFSET ${offset}
+        </if>
+    </select>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM activities_special_needs
+    </select>
+
+    <select id="selectById" resultMap="ActivitySpecialNeed">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        activities_special_needs
+        WHERE
+        activity_id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </select>
+</mapper>
