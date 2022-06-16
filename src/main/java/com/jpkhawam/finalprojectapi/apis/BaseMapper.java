@@ -12,7 +12,7 @@ public interface BaseMapper<T> {
 
     void insert(T t);
 
-    UUID update(T t);
+    void update(T t);
 
     void delete(UUID id);
 }

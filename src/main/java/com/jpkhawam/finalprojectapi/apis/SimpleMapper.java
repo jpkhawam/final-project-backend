@@ -11,7 +11,7 @@ public interface SimpleMapper<T> {
 
     void insert(T t);
 
-    int update(T t);
+    void update(T t);
 
     void delete(int id);
 }

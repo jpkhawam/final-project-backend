@@ -1,0 +1,70 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jpkhawam.finalprojectapi.apis.family_members.FamilyMemberMapper">
+    <resultMap id="FamilyMember" type="familymember">
+        <id column="id" property="id"/>
+        <result column="family_id" property="family_id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+    </resultMap>
+
+    <sql id="selectAllColumns">
+        id,
+        family_id,
+        name,
+        age
+    </sql>
+
+    <select id="selectAll" resultMap="FamilyMember">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        family_members
+        <if test="orderColumn != null">
+            ORDER BY ${orderColumn.getColumn()}
+            <if test="orderDirection != null">
+                ${orderDirection.getDirection()}
+            </if>
+        </if>
+        <if test="limit != null">
+            LIMIT ${limit}
+        </if>
+        <if test="offset != null">
+            OFFSET ${offset}
+        </if>
+    </select>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM family_members
+    </select>
+
+    <select id="selectById" resultMap="FamilyMember">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        family_members
+        WHERE
+        id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </select>
+
+    <insert id="insert" parameterType="familymember">
+        INSERT INTO family_members(family_id, name, age)
+        VALUES (#{family_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}, #{name}, #{age})
+    </insert>
+
+    <update id="update">
+        UPDATE family_members
+        SET family_id = #{family_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler},
+            name      = #{name},
+            age       = #{age}
+        WHERE id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM family_members
+        WHERE id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </delete>
+</mapper>
