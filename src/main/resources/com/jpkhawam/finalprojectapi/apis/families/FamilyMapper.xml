@@ -1,0 +1,70 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jpkhawam.finalprojectapi.apis.families.FamilyMapper">
+    <resultMap id="Family" type="family">
+        <id column="id" property="id"/>
+        <result column="email" property="email"/>
+        <result column="name" property="name"/>
+        <result column="city_id" property="city_id"/>
+    </resultMap>
+
+    <sql id="selectAllColumns">
+        id,
+        email,
+        name,
+        city_id
+    </sql>
+
+    <select id="selectAll" resultMap="Family">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        families
+        <if test="orderColumn != null">
+            ORDER BY ${orderColumn.getColumn()}
+            <if test="orderDirection != null">
+                ${orderDirection.getDirection()}
+            </if>
+        </if>
+        <if test="limit != null">
+            LIMIT ${limit}
+        </if>
+        <if test="offset != null">
+            OFFSET ${offset}
+        </if>
+    </select>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM families
+    </select>
+
+    <select id="selectById" resultMap="Family">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        families
+        WHERE
+        id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </select>
+
+    <insert id="insert" parameterType="family">
+        INSERT INTO families(email, name, city_id)
+        VALUES (#{email}, #{name}, #{city_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler})
+    </insert>
+
+    <update id="update">
+        UPDATE families
+        SET name    = #{name},
+            email   = #{email},
+            city_id = #{city_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+        WHERE id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM families
+        WHERE id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </delete>
+</mapper>
