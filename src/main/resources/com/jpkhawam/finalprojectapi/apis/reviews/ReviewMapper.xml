@@ -1,0 +1,93 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jpkhawam.finalprojectapi.apis.reviews.ReviewMapper">
+    <resultMap id="Review" type="review">
+        <id column="id" property="id"/>
+        <id column="family_id" property="family_id"/>
+        <id column="activity_id" property="activity_id"/>
+        <id column="rating" property="rating"/>
+        <id column="comment" property="comment"/>
+    </resultMap>
+
+    <sql id="selectAllColumns">
+        id,
+        family_id,
+        activity_id,
+        rating,
+        comment
+    </sql>
+
+    <select id="selectAll" resultMap="Review">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        reviews
+        <if test="orderColumn != null">
+            ORDER BY ${orderColumn.getColumn()}
+            <if test="orderDirection != null">
+                ${orderDirection.getDirection()}
+            </if>
+        </if>
+        <if test="limit != null">
+            LIMIT ${limit}
+        </if>
+        <if test="offset != null">
+            OFFSET ${offset}
+        </if>
+    </select>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM reviews
+    </select>
+
+    <select id="selectById" resultMap="Review">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        reviews
+        WHERE
+        id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </select>
+
+    <select id="selectByActivityId" resultMap="Review">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        reviews
+        WHERE
+        activity_id = #{activity_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </select>
+
+    <select id="selectByFamilyId" resultMap="Review">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        reviews
+        WHERE
+        family_id = #{family_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </select>
+
+    <insert id="insert" parameterType="review">
+        INSERT INTO reviews(family_id, activity_id, rating, comment)
+        VALUES (#{family_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler},
+                #{activity_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler},
+                #{rating}, #{comment})
+    </insert>
+
+    <update id="update">
+        UPDATE reviews
+        SET family_id   = #{family_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler},
+            activity_id = #{activity_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler},
+            rating      = #{rating},
+            comment     = #{comment}
+        WHERE id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM reviews
+        WHERE id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </delete>
+</mapper>
