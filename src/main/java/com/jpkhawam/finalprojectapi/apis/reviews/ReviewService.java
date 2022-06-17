@@ -28,11 +28,11 @@ public class ReviewService {
         return reviewMapper.selectById(id);
     }
 
-    public Review getByFamilyId(UUID id) {
+    public List<Review> getByFamilyId(UUID id) {
         return reviewMapper.selectByFamilyId(id);
     }
 
-    public Review getByActivityId(UUID id) {
+    public List<Review> getByActivityId(UUID id) {
         return reviewMapper.selectByActivityId(id);
     }
 

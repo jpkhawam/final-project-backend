@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -41,12 +42,12 @@ public class ReviewController extends BaseController {
     }
 
     @GetMapping("/family_id/{id}")
-    public Review getByFamilyId(@PathVariable() UUID id) {
+    public List<Review> getByFamilyId(@PathVariable() UUID id) {
         return reviewService.getByFamilyId(id);
     }
 
     @GetMapping("/activity_id/{id}")
-    public Review getByActivityId(@PathVariable() UUID id) {
+    public List<Review> getByActivityId(@PathVariable() UUID id) {
         return reviewService.getByActivityId(id);
     }
 
