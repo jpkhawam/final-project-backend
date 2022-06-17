@@ -40,6 +40,16 @@ public class ReviewController extends BaseController {
         return reviewService.getById(id);
     }
 
+    @GetMapping("/family_id/{id}")
+    public Review getByFamilyId(@PathVariable() UUID id) {
+        return reviewService.getByFamilyId(id);
+    }
+
+    @GetMapping("/activity_id/{id}")
+    public Review getByActivityId(@PathVariable() UUID id) {
+        return reviewService.getByActivityId(id);
+    }
+
     @PutMapping("/{id}")
     public void update(@PathVariable() UUID id, @RequestBody Review review) {
         review.setId(id);
