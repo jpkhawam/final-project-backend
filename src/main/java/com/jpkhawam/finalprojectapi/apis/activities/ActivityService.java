@@ -8,8 +8,6 @@ import java.util.UUID;
 
 @Service
 public class ActivityService {
-    //  private static final Logger logger = LoggerFactory.getLogger(ActivityService.class);
-
     final ActivityMapper activityMapper;
 
     public ActivityService(ActivityMapper activityMapper) {
@@ -22,6 +20,10 @@ public class ActivityService {
 
     public Integer getCount(ApiRequest apiRequest) {
         return this.activityMapper.selectCount(apiRequest);
+    }
+
+    public Integer getCountByCityId(ApiRequest apiRequest) {
+        return this.activityMapper.selectCountByCityId(apiRequest);
     }
 
     public Activity getById(UUID id) {

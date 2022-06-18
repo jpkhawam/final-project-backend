@@ -50,6 +50,14 @@
         <if test="search != null">
             WHERE name ILIKE #{search}
         </if>
+        <if test="city_id != null and search != null">
+            AND
+            city_id = #{city_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+        </if>
+        <if test="city_id != null and search == null">
+            WHERE
+            city_id = #{city_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+        </if>
         <if test="orderColumn != null">
             ORDER BY ${orderColumn.getColumn()}
             <if test="orderDirection != null">
@@ -67,6 +75,16 @@
     <select id="selectCount" resultType="Integer">
         SELECT COUNT(*)
         FROM activities
+    </select>
+
+    <select id="selectCountByCityId" resultType="Integer">
+        SELECT COUNT(*)
+        FROM activities
+        WHERE
+        city_id = #{city_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+        <if test="search != null">
+            AND name ILIKE #{search}
+        </if>
     </select>
 
     <select id="selectById" resultMap="Activity">

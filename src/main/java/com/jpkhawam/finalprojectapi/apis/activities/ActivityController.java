@@ -25,16 +25,21 @@ public class ActivityController extends BaseController {
             @RequestParam(name = "orderDirection", required = false, defaultValue = "ascending") OrderDirection orderDirection,
             @RequestParam(name = "limit", required = false) Integer limit,
             @RequestParam(name = "offset", required = false) Integer offset,
-            @RequestParam(name = "search", required = false) String search) {
+            @RequestParam(name = "search", required = false) String search,
+            @RequestParam(name = "city_id", required = false) UUID city_id) {
         ApiRequest apiRequest = new ApiRequest();
         apiRequest.setOrderColumn(activityOrderColumn);
         apiRequest.setOrderDirection(orderDirection);
         apiRequest.setLimit(limit);
         apiRequest.setOffset(offset);
         apiRequest.setSearch(search);
+        apiRequest.setCity_id(city_id);
 
         Map<String, Object> response = new HashMap<>();
-        response.put("count", this.activityService.getCount(apiRequest));
+        if (city_id == null)
+            response.put("count", this.activityService.getCount(apiRequest));
+        else
+            response.put("count", this.activityService.getCountByCityId(apiRequest));
         response.put("activities", this.activityService.getAll(apiRequest));
         return response;
     }
