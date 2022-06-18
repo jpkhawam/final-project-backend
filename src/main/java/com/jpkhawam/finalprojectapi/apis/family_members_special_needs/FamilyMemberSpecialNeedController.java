@@ -19,7 +19,11 @@ public class FamilyMemberSpecialNeedController {
     }
 
     @GetMapping()
-    public Map<String, Object> getAll(@RequestParam(name = "orderColumn", required = false, defaultValue = "name") FamilyMemberSpecialNeedOrderColumn familyMemberSpecialNeedOrderColumn, @RequestParam(name = "orderDirection", required = false, defaultValue = "ascending") OrderDirection orderDirection, @RequestParam(name = "limit", required = false) Integer limit, @RequestParam(name = "offset", required = false) Integer offset) {
+    public Map<String, Object> getAll(
+            @RequestParam(name = "orderColumn", required = false, defaultValue = "name") FamilyMemberSpecialNeedOrderColumn familyMemberSpecialNeedOrderColumn,
+            @RequestParam(name = "orderDirection", required = false, defaultValue = "ascending") OrderDirection orderDirection,
+            @RequestParam(name = "limit", required = false) Integer limit,
+            @RequestParam(name = "offset", required = false) Integer offset) {
         ApiRequest apiRequest = new ApiRequest();
         apiRequest.setOrderColumn(familyMemberSpecialNeedOrderColumn);
         apiRequest.setOrderDirection(orderDirection);

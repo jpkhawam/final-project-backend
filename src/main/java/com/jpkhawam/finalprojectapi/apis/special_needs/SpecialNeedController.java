@@ -18,7 +18,11 @@ public class SpecialNeedController {
     }
 
     @GetMapping()
-    public Map<String, Object> getAll(@RequestParam(name = "orderColumn", required = false, defaultValue = "name") SpecialNeedOrderColumn specialNeedOrderColumn, @RequestParam(name = "orderDirection", required = false, defaultValue = "ascending") OrderDirection orderDirection, @RequestParam(name = "limit", required = false) Integer limit, @RequestParam(name = "offset", required = false) Integer offset) {
+    public Map<String, Object> getAll(
+            @RequestParam(name = "orderColumn", required = false, defaultValue = "name") SpecialNeedOrderColumn specialNeedOrderColumn,
+            @RequestParam(name = "orderDirection", required = false, defaultValue = "ascending") OrderDirection orderDirection,
+            @RequestParam(name = "limit", required = false) Integer limit,
+            @RequestParam(name = "offset", required = false) Integer offset) {
         ApiRequest apiRequest = new ApiRequest();
         apiRequest.setOrderColumn(specialNeedOrderColumn);
         apiRequest.setOrderDirection(orderDirection);

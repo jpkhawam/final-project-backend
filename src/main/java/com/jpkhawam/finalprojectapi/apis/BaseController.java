@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseController {
-
     @ResponseBody
     @ExceptionHandler(BindException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -24,7 +23,6 @@ public abstract class BaseController {
             fieldErrorMessage.setMessage("Field is invalid. Make sure you pass in the correct data");
             fieldErrorMessages.add(fieldErrorMessage);
         }
-
         return fieldErrorMessages;
     }
 }
