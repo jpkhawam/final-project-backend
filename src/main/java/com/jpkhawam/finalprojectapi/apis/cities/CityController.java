@@ -12,8 +12,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/cities")
 public class CityController {
-    //  private static final Logger logger = LoggerFactory.getLogger(CityController.class);
-
     final CityService cityService;
 
     public CityController(CityService cityService) {

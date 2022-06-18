@@ -13,8 +13,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/activities")
 public class ActivityController extends BaseController {
-    //  private static final Logger logger = LoggerFactory.getLogger(ActivityController.class);
-
     final ActivityService activityService;
 
     public ActivityController(ActivityService activityService) {

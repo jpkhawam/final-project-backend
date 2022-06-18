@@ -11,8 +11,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/settings")
 public class SettingController {
-    //  private static final Logger logger = LoggerFactory.getLogger(SettingController.class);
-
     final SettingService settingService;
 
     public SettingController(SettingService settingService) {

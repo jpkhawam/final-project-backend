@@ -13,8 +13,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/families")
 public class FamilyController extends BaseController {
-    //  private static final Logger logger = LoggerFactory.getLogger(FamilyController.class);
-
     final FamilyService familyService;
 
     public FamilyController(FamilyService familyService) {

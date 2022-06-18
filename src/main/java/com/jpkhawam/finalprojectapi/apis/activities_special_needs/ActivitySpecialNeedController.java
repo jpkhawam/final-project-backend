@@ -13,8 +13,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/activities_special_needs")
 public class ActivitySpecialNeedController extends BaseController {
-    //  private static final Logger logger = LoggerFactory.getLogger(ActivitySpecialNeedController.class);
-
     final ActivitySpecialNeedService activitySpecialNeedService;
 
     public ActivitySpecialNeedController(ActivitySpecialNeedService activitySpecialNeedService) {

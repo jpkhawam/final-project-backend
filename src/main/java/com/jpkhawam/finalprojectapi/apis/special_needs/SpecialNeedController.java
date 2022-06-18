@@ -11,8 +11,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/special_needs")
 public class SpecialNeedController {
-    //  private static final Logger logger = LoggerFactory.getLogger(SpecialNeedController.class);
-
     final SpecialNeedService specialNeedService;
 
     public SpecialNeedController(SpecialNeedService specialNeedService) {

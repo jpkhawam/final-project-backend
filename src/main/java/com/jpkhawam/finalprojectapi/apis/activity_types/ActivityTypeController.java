@@ -11,8 +11,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/activity_types")
 public class ActivityTypeController {
-    //  private static final Logger logger = LoggerFactory.getLogger(ActivityTypeController.class);
-
     final ActivityTypeService activityTypeService;
 
     public ActivityTypeController(ActivityTypeService activityTypeService) {

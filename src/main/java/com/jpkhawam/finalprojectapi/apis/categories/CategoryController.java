@@ -11,8 +11,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
-    //  private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
-
     final CategoryService categoryService;
 
     public CategoryController(CategoryService categoryService) {

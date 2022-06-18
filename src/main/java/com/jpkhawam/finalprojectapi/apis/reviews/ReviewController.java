@@ -14,8 +14,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/reviews")
 public class ReviewController extends BaseController {
-    //  private static final Logger logger = LoggerFactory.getLogger(ReviewController.class);
-
     final ReviewService reviewService;
 
     public ReviewController(ReviewService reviewService) {
