@@ -47,6 +47,9 @@
         <include refid="selectAllColumns"/>
         FROM
         activities
+        <if test="search != null">
+            WHERE name ILIKE #{search}
+        </if>
         <if test="orderColumn != null">
             ORDER BY ${orderColumn.getColumn()}
             <if test="orderDirection != null">

@@ -20,12 +20,18 @@ public class ActivityController extends BaseController {
     }
 
     @GetMapping()
-    public Map<String, Object> getAll(@RequestParam(name = "orderColumn", required = false, defaultValue = "name") ActivityOrderColumn activityOrderColumn, @RequestParam(name = "orderDirection", required = false, defaultValue = "ascending") OrderDirection orderDirection, @RequestParam(name = "limit", required = false) Integer limit, @RequestParam(name = "offset", required = false) Integer offset) {
+    public Map<String, Object> getAll(
+            @RequestParam(name = "orderColumn", required = false, defaultValue = "name") ActivityOrderColumn activityOrderColumn,
+            @RequestParam(name = "orderDirection", required = false, defaultValue = "ascending") OrderDirection orderDirection,
+            @RequestParam(name = "limit", required = false) Integer limit,
+            @RequestParam(name = "offset", required = false) Integer offset,
+            @RequestParam(name = "search", required = false) String search) {
         ApiRequest apiRequest = new ApiRequest();
         apiRequest.setOrderColumn(activityOrderColumn);
         apiRequest.setOrderDirection(orderDirection);
         apiRequest.setLimit(limit);
         apiRequest.setOffset(offset);
+        apiRequest.setSearch(search);
 
         Map<String, Object> response = new HashMap<>();
         response.put("count", this.activityService.getCount(apiRequest));
