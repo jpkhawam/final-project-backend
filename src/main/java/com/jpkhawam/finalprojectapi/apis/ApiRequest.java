@@ -8,8 +8,9 @@ public class ApiRequest {
     private Integer limit;
     private Integer offset;
     private String search;
-
     private UUID city_id;
+    private UUID activity_id;
+    private UUID family_id;
 
     public OrderColumn getOrderColumn() {
         return orderColumn;
@@ -65,5 +66,21 @@ public class ApiRequest {
 
     public void setCity_id(UUID city_id) {
         this.city_id = city_id;
+    }
+
+    public UUID getActivity_id() {
+        return activity_id;
+    }
+
+    public void setActivity_id(UUID activity_id) {
+        this.activity_id = activity_id;
+    }
+
+    public UUID getFamily_id() {
+        return family_id;
+    }
+
+    public void setFamily_id(UUID family_id) {
+        this.family_id = family_id;
     }
 }

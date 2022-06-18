@@ -23,6 +23,18 @@
         <include refid="selectAllColumns"/>
         FROM
         reviews
+        <if test="activity_id != null">
+            WHERE
+            activity_id = #{activity_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+        </if>
+        <if test="family_id != null and activity_id != null">
+            AND
+            family_id = #{family_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+        </if>
+        <if test="family_id != null and activity_id == null">
+            WHERE
+            family_id = #{family_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+        </if>
         <if test="orderColumn != null">
             ORDER BY ${orderColumn.getColumn()}
             <if test="orderDirection != null">
@@ -42,6 +54,18 @@
         FROM reviews
     </select>
 
+    <select id="selectCountByFamilyId" resultType="Integer">
+        SELECT COUNT(*)
+        FROM reviews
+        WHERE family_id = #{family_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </select>
+
+    <select id="selectCountByActivityId" resultType="Integer">
+        SELECT COUNT(*)
+        FROM reviews
+        WHERE activity_id = #{activity_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </select>
+
     <select id="selectById" resultMap="Review">
         SELECT
         <include refid="selectAllColumns"/>
@@ -49,24 +73,6 @@
         reviews
         WHERE
         id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
-    </select>
-
-    <select id="selectByActivityId" resultMap="Review">
-        SELECT
-        <include refid="selectAllColumns"/>
-        FROM
-        reviews
-        WHERE
-        activity_id = #{activity_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
-    </select>
-
-    <select id="selectByFamilyId" resultMap="Review">
-        SELECT
-        <include refid="selectAllColumns"/>
-        FROM
-        reviews
-        WHERE
-        family_id = #{family_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
     </select>
 
     <insert id="insert" parameterType="review">

@@ -26,12 +26,12 @@ public class ReviewService {
         return reviewMapper.selectById(id);
     }
 
-    public List<Review> getByFamilyId(UUID id) {
-        return reviewMapper.selectByFamilyId(id);
+    public Integer getCountByFamilyId(ApiRequest apiRequest) {
+        return this.reviewMapper.selectCountByFamilyId(apiRequest);
     }
 
-    public List<Review> getByActivityId(UUID id) {
-        return reviewMapper.selectByActivityId(id);
+    public Integer getCountByActivityId(ApiRequest apiRequest) {
+        return this.reviewMapper.selectCountByActivityId(apiRequest);
     }
 
     public void update(Review review) {
