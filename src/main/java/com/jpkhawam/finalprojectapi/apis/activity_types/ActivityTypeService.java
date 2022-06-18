@@ -7,8 +7,6 @@ import java.util.List;
 
 @Service
 public class ActivityTypeService {
-    //  private static final Logger logger = LoggerFactory.getLogger(ActivityTypeService.class);
-
     final ActivityTypeMapper activityTypeMapper;
 
     public ActivityTypeService(ActivityTypeMapper activityTypeMapper) {

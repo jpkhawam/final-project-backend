@@ -8,8 +8,6 @@ import java.util.UUID;
 
 @Service
 public class ReviewService {
-    //  private static final Logger logger = LoggerFactory.getLogger(ReviewService.class);
-
     final ReviewMapper reviewMapper;
 
     public ReviewService(ReviewMapper reviewMapper) {

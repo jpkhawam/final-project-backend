@@ -7,8 +7,6 @@ import java.util.List;
 
 @Service
 public class CategoryService {
-    //  private static final Logger logger = LoggerFactory.getLogger(CategoryService.class);
-
     final CategoryMapper categoryMapper;
 
     public CategoryService(CategoryMapper categoryMapper) {

@@ -8,8 +8,6 @@ import java.util.UUID;
 
 @Service
 public class ActivitySpecialNeedService {
-    //  private static final Logger logger = LoggerFactory.getLogger(ActivitySpecialNeedService.class);
-
     final ActivitySpecialNeedMapper activitySpecialNeedMapper;
 
     public ActivitySpecialNeedService(ActivitySpecialNeedMapper activitySpecialNeedMapper) {

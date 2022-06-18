@@ -8,8 +8,6 @@ import java.util.UUID;
 
 @Service
 public class FamilyMemberService {
-    //  private static final Logger logger = LoggerFactory.getLogger(FamilyMemberService.class);
-
     final FamilyMemberMapper familyMemberMapper;
 
     public FamilyMemberService(FamilyMemberMapper familyMemberMapper) {

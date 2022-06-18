@@ -7,8 +7,6 @@ import java.util.List;
 
 @Service
 public class SettingService {
-    //  private static final Logger logger = LoggerFactory.getLogger(SettingService.class);
-
     final SettingMapper settingMapper;
 
     public SettingService(SettingMapper settingMapper) {

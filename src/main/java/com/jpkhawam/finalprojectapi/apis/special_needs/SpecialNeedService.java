@@ -7,8 +7,6 @@ import java.util.List;
 
 @Service
 public class SpecialNeedService {
-    //  private static final Logger logger = LoggerFactory.getLogger(SpecialNeedService.class);
-
     final SpecialNeedMapper specialNeedMapper;
 
     public SpecialNeedService(SpecialNeedMapper specialNeedMapper) {

@@ -7,8 +7,6 @@ import java.util.List;
 
 @Service
 public class TagService {
-    //  private static final Logger logger = LoggerFactory.getLogger(TagService.class);
-
     final TagMapper tagMapper;
 
     public TagService(TagMapper tagMapper) {

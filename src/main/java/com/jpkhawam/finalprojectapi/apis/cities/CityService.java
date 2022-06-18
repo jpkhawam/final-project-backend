@@ -8,8 +8,6 @@ import java.util.UUID;
 
 @Service
 public class CityService {
-    //  private static final Logger logger = LoggerFactory.getLogger(CityService.class);
-
     final CityMapper cityMapper;
 
     public CityService(CityMapper cityMapper) {
