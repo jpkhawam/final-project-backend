@@ -1,0 +1,72 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jpkhawam.finalprojectapi.apis.family_members_special_needs.FamilyMemberSpecialNeedMapper">
+    <resultMap id="FamilyMemberSpecialNeed" type="familymemberspecialneed">
+        <id column="id" property="id"/>
+        <result column="family_id" property="family_id"/>
+        <result column="family_member_id" property="family_member_id"/>
+        <result column="special_need_id" property="special_need_id"/>
+    </resultMap>
+
+    <sql id="selectAllColumns">
+        id,
+        family_id,
+        family_member_id,
+        special_need_id
+    </sql>
+
+    <select id="selectAll" resultMap="FamilyMemberSpecialNeed">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        family_members_special_needs
+        <if test="orderColumn != null">
+            ORDER BY ${orderColumn.getColumn()}
+            <if test="orderDirection != null">
+                ${orderDirection.getDirection()}
+            </if>
+        </if>
+        <if test="limit != null">
+            LIMIT ${limit}
+        </if>
+        <if test="offset != null">
+            OFFSET ${offset}
+        </if>
+    </select>
+
+    <select id="selectCount" resultType="Integer">
+        SELECT COUNT(*)
+        FROM family_members_special_needs
+    </select>
+
+    <select id="selectById" resultMap="FamilyMemberSpecialNeed">
+        SELECT
+        <include refid="selectAllColumns"/>
+        FROM
+        family_members_special_needs
+        WHERE
+        family_id = #{family_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </select>
+
+    <insert id="insert" parameterType="familymemberspecialneed">
+        INSERT INTO family_members_special_needs(family_id, family_member_id, special_need_id)
+        VALUES (#{family_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler},
+                #{family_member_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler},
+                #{special_need_id})
+    </insert>
+
+    <update id="update">
+        UPDATE family_members_special_needs
+        SET family_id        = #{family_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler},
+            family_member_id = #{family_member_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler},
+            special_need_id  = #{special_need_id}
+        WHERE id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </update>
+
+    <delete id="delete">
+        DELETE
+        FROM family_members_special_needs
+        WHERE id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+    </delete>
+</mapper>

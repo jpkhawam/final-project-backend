@@ -12,8 +12,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/api/family_members")
 public class FamilyMemberController {
-    //  private static final Logger logger = LoggerFactory.getLogger(FamilyMemberController.class);
-
     final FamilyMemberService familyMemberService;
 
     public FamilyMemberController(FamilyMemberService familyMemberService) {
