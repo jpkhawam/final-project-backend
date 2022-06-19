@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/families")
@@ -37,14 +36,13 @@ public class FamilyController extends BaseController {
         return response;
     }
 
-    @GetMapping("/{id}")
-    public Family getById(@PathVariable() UUID id) {
-        return familyService.getById(id);
+    @GetMapping("/{email}")
+    public Family getByEmail(@PathVariable() String email) {
+        return familyService.getByEmail(email);
     }
 
-    @PutMapping("/{id}")
-    public void update(@PathVariable() UUID id, @RequestBody Family family) {
-        family.setId(id);
+    @PutMapping("/{email}")
+    public void update(@PathVariable() String email, @RequestBody Family family) {
         familyService.update(family);
     }
 
@@ -53,8 +51,8 @@ public class FamilyController extends BaseController {
         familyService.insert(family);
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable() UUID id) {
-        familyService.delete(id);
+    @DeleteMapping("/{email}")
+    public void delete(@PathVariable() String email) {
+        familyService.delete(email);
     }
 }

@@ -4,7 +4,6 @@ import com.jpkhawam.finalprojectapi.apis.ApiRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class FamilyService {
@@ -22,8 +21,8 @@ public class FamilyService {
         return this.familyMapper.selectCount(apiRequest);
     }
 
-    public Family getById(UUID id) {
-        return familyMapper.selectById(id);
+    public Family getByEmail(String email) {
+        return familyMapper.selectByEmail(email);
     }
 
     public void update(Family family) {
@@ -34,7 +33,7 @@ public class FamilyService {
         familyMapper.insert(family);
     }
 
-    public void delete(UUID id) {
-        familyMapper.delete(id);
+    public void delete(String email) {
+        familyMapper.delete(email);
     }
 }

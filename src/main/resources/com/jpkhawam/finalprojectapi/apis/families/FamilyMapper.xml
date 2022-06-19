@@ -40,18 +40,20 @@
         FROM families
     </select>
 
-    <select id="selectById" resultMap="Family">
+    <select id="selectByEmail" resultMap="Family">
         SELECT
         <include refid="selectAllColumns"/>
         FROM
         families
         WHERE
-        id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+        email = #{email}
     </select>
 
     <insert id="insert" parameterType="family">
         INSERT INTO families(email, name, city_id)
-        VALUES (#{email}, #{name}, #{city_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler})
+        VALUES (#{email},
+                #{name},
+                #{city_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler})
     </insert>
 
     <update id="update">
@@ -59,12 +61,12 @@
         SET name    = #{name},
             email   = #{email},
             city_id = #{city_id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
-        WHERE id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+        WHERE email = #{email}
     </update>
 
     <delete id="delete">
         DELETE
         FROM families
-        WHERE id = #{id,javaType=UUID,jdbcType=OTHER,typeHandler=UUIDTypeHandler}
+        WHERE email = #{email}
     </delete>
 </mapper>
