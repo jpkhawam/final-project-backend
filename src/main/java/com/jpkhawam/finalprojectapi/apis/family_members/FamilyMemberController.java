@@ -23,12 +23,14 @@ public class FamilyMemberController {
             @RequestParam(name = "orderColumn", required = false, defaultValue = "name") FamilyMemberOrderColumn familyMemberOrderColumn,
             @RequestParam(name = "orderDirection", required = false, defaultValue = "ascending") OrderDirection orderDirection,
             @RequestParam(name = "limit", required = false) Integer limit,
-            @RequestParam(name = "offset", required = false) Integer offset) {
+            @RequestParam(name = "offset", required = false) Integer offset,
+            @RequestParam(name = "family_id", required = false) UUID family_id) {
         ApiRequest apiRequest = new ApiRequest();
         apiRequest.setOrderColumn(familyMemberOrderColumn);
         apiRequest.setOrderDirection(orderDirection);
         apiRequest.setLimit(limit);
         apiRequest.setOffset(offset);
+        apiRequest.setFamily_id(family_id);
 
         Map<String, Object> response = new HashMap<>();
         response.put("count", this.familyMemberService.getCount(apiRequest));
